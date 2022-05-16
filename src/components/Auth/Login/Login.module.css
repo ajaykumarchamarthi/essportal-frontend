@@ -1,0 +1,114 @@
+.fullpage {
+  min-height: calc(100vh - 60px);
+  background-image: url(./../../../assets/images/login.jpg);
+  background-repeat: no-repeat;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 1em 0;
+}
+
+.credentials {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.formContainer {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5em;
+  padding: 2rem 7rem;
+  margin: 0 auto;
+  border-radius: 1em;
+}
+
+.title {
+  text-align: center;
+  margin: 0 auto;
+  color: blue;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.btn {
+  margin: 2em auto;
+  display: flex;
+  justify-content: center;
+}
+
+.btn Button {
+  padding: 0.5em 2em;
+}
+
+.error {
+  color: red;
+  margin-top: 0.2em;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.options p {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.options span {
+  color: #ff5574;
+  cursor: pointer;
+}
+
+.options span:hover {
+  color: #e2389b;
+}
+
+.optionsHeading {
+  margin-bottom: 1em;
+}
+
+.line {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 600px) {
+  .formContainer {
+    max-width: 460px;
+    padding: 1.5em 2em;
+  }
+
+  .btn {
+    margin: 1em auto;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .formContainer {
+    max-width: 340px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .landingCover {
+    background-position: right;
+  }
+}

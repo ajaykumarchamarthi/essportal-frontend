@@ -1,0 +1,40 @@
+.webOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.8em;
+}
+
+.webOptions li {
+  list-style: none;
+  cursor: pointer;
+}
+
+.webOptions li a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.2em;
+  padding-bottom: 0.1em;
+}
+
+.webOptions li:last-child {
+  margin: 0 0.8em;
+}
+
+a.active {
+  border-bottom: 3px solid white;
+}
+
+.nav {
+  display: flex;
+}
+
+.navIcon {
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.navIcon span {
+  margin-left: 0.2em;
+}

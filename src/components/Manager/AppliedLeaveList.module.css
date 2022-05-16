@@ -1,0 +1,51 @@
+.leaveContainer {
+  margin: 0.5em;
+}
+
+.leaveList {
+  border: 1px solid #333;
+  margin: 1em;
+  padding: 0.5em;
+}
+
+.statusSection {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.3em 0 0;
+}
+
+.leaveInfo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.status {
+  display: inline-block;
+  border-radius: 1em;
+  margin-left: 0.1em;
+  padding: 0.4em 1em;
+  color: #fff;
+  background: rgba(51, 51, 51, 0.7);
+}
+
+.btn {
+  border: none;
+  padding: 0.4em 1.2em;
+  display: flex;
+  margin: 0.1em auto 0.4em;
+  color: white;
+  background: linear-gradient(to bottom right, #30ded2, #5baffc);
+  border-radius: 1em;
+}
+
+@media screen and (max-width: 400px) {
+  .statusSection {
+    flex-direction: column;
+  }
+
+  .leaveInfo {
+    flex-direction: column;
+  }
+}

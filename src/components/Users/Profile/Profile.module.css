@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  background: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  padding: 1em;
+  border-radius: 1.5em;
+}

@@ -1,0 +1,15 @@
+.admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  padding: 0.7em 1.2em;
+  display: flex;
+  margin: 1em 0;
+  color: white;
+  background: linear-gradient(to bottom right, #30ded2, #5baffc);
+  border-radius: 1em;
+}
