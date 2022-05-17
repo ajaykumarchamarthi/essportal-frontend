@@ -67,47 +67,57 @@ function ResetPassword() {
       );
   };
   return (
-    <div className={classes.container}>
-      <div className={classes.title}>
-        <h3>Reset Password</h3>
+    <div className={classes.fullpage}>
+      <div className={classes.container}>
+        <div className={classes.formContainer}>
+          <div className={classes.title}>
+            <h3>Reset Password</h3>
+          </div>
+          <form
+            onSubmit={handleSubmit(submitHandler)}
+            className={classes.formContainer}
+          >
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                margin="normal"
+                style={{ width: 300 }}
+                type="password"
+                name="password"
+                {...register("password", {
+                  required: true,
+                })}
+              />
+              <p className={classes.error}> {errors.password?.message}</p>
+            </div>
+            <div>
+              <TextField
+                name="confirmPassword"
+                id="outlined-basic"
+                label="Confirm Password"
+                variant="outlined"
+                margin="normal"
+                style={{ width: 300 }}
+                type="password"
+                {...register("confirmPassword", {
+                  required: true,
+                })}
+              />
+              <p className={classes.error}>
+                {" "}
+                {errors.passwordConfirm?.message}
+              </p>
+            </div>
+            <div className={classes.btn}>
+              <Button variant="contained" type="submit">
+                Reset Password
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
-      <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
-        <div>
-          <TextField
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            margin="normal"
-            style={{ width: 300 }}
-            type="password"
-            name="password"
-            {...register("password", {
-              required: true,
-            })}
-          />
-          <p className={classes.error}> {errors.password?.message}</p>
-        </div>
-        <div>
-          <TextField
-            name="confirmPassword"
-            id="outlined-basic"
-            label="Confirm Password"
-            variant="outlined"
-            margin="normal"
-            style={{ width: 300 }}
-            type="password"
-            {...register("confirmPassword", {
-              required: true,
-            })}
-          />
-          <p className={classes.error}> {errors.passwordConfirm?.message}</p>
-        </div>
-        <div className={classes.btn}>
-          <Button variant="contained" type="submit">
-            Reset Password
-          </Button>
-        </div>
-      </form>
     </div>
   );
 }
