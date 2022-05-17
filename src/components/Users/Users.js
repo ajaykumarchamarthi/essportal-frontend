@@ -2,22 +2,36 @@ import React, { useState, useEffect } from "react";
 import axois from "axios";
 import Profile from "./Profile/Profile";
 import classes from "./Users.module.css";
+import Cookies from "js-cookie";
 
 function Users() {
   const [leavesList, setLeavesList] = useState([]);
 
   const user = localStorage.getItem("user");
 
+  const userId = localStorage.getItem("userId");
+
+  const token = Cookies.get("jwt");
+
   useEffect(() => {
     const getAllLeaves = async () => {
       const response = await axois.get(
-        "https://essportal-backend.herokuapp.com/api/v1/leave/getAllLeaves"
+        "https://essportal-backend.herokuapp.com/api/v1/leave/getAllLeaves",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const { data } = await response.data;
-      setLeavesList(data.Leaves);
+
+      const filteredLeaves = data.Leaves.filter(
+        (leave) => leave.user._id === userId
+      );
+      setLeavesList(filteredLeaves);
     };
     getAllLeaves();
-  }, []);
+  }, [userId, token]);
 
   return (
     <div className={classes.container}>
