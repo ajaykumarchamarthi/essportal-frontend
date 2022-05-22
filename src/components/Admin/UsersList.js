@@ -24,7 +24,7 @@ function UsersList() {
       setUsersList(filteredUsers);
     };
     loadUsers().catch((err) => alert(err.message));
-  }, []);
+  }, [token]);
 
   return (
     <div>
