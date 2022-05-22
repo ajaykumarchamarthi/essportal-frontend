@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import axios from "axios";
 import classes from "./UsersList.module.css";
 
 function UsersList() {
   const [usersList, setUsersList] = useState([]);
 
-  console.log(usersList);
+  const token = Cookies.get("jwt");
 
   useEffect(() => {
     const loadUsers = async () => {
       const response = await axios.get(
-        "https://essportal-backend.herokuapp.com/api/v1/users/getAllUsers"
+        "https://essportal-backend.herokuapp.com/api/v1/users/getAllUsers",
+        {
+          headers: {
+            "content-Type": "application/JSON",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const { data } = await response.data;
-      setUsersList(data.users);
+      const filteredUsers = data.users.filter((user) => user.role === "user");
+      setUsersList(filteredUsers);
     };
-    loadUsers();
+    loadUsers().catch((err) => alert(err.message));
   }, []);
 
   return (

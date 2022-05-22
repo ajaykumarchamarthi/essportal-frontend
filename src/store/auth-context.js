@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const AuthContext = React.createContext({
@@ -11,7 +10,6 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
-  const history = useHistory();
   const cookies = Cookies.get("jwt");
   const userIsLoggedIn = !!cookies;
 
@@ -22,7 +20,6 @@ export const AuthContextProvider = (props) => {
     setToken(null);
     localStorage.removeItem("userId");
     localStorage.removeItem("user");
-    history.replace("/");
   };
 
   const loginHandler = (token, userId, user) => {

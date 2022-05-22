@@ -73,10 +73,7 @@ function ResetPassword() {
           <div className={classes.title}>
             <h3>Reset Password</h3>
           </div>
-          <form
-            onSubmit={handleSubmit(submitHandler)}
-            className={classes.formContainer}
-          >
+          <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
             <div>
               <TextField
                 id="outlined-basic"

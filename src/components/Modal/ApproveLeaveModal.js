@@ -25,17 +25,20 @@ const ModalOverlay = (props) => {
 
     const leaveId = props.id;
 
-    fetch(`http://localhost:4000/api/v1/leave/authorizeLeave`, {
-      method: "PATCH",
-      headers: {
-        "content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        leaveId,
-        status,
-      }),
-    })
+    fetch(
+      `https://essportal-backend.herokuapp.com/api/v1/leave/authorizeLeave`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          leaveId,
+          status,
+        }),
+      }
+    )
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -50,7 +53,7 @@ const ModalOverlay = (props) => {
         toast.success(data.message, {
           position: toast.POSITION.TOP_CENTER,
         });
-        history.replaceState("/manager");
+        history.replace("/manager");
       })
       .catch((err) => {
         toast.error(err.message, {

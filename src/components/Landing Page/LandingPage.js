@@ -5,7 +5,9 @@ function LandingPage() {
   return (
     <div className={classes.container}>
       <div className={classes.coverTitle}>
-        <h1>Hello Welcome to the Page</h1>
+        <h1>
+          Employee self-service (ESS) portal.One Step Solution for Employees.
+        </h1>
       </div>
     </div>
   );

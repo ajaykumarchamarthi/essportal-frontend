@@ -65,7 +65,10 @@ function Login() {
       <div className={classes.container}>
         <div className={classes.formContainer}>
           <p className={classes.credentials}>
-            User Credentials - ajayaj0302@gmail.com & ajayaj0302
+            User Credentials <br />
+            Employee - ajay_kumar619@ymail.com <br />
+            Admin - allforgousers@gmail.com
+            <br /> Manager - ajayaj0302@gmail.com <br /> password - ajay1234
           </p>
           <div className={classes.title}>
             <h3>Login</h3>

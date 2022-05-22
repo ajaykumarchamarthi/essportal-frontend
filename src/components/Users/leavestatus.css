@@ -1,0 +1,23 @@
+.Pending {
+  display: inline-block;
+  padding: 0.4em 1.2em;
+  color: #fff;
+  background: #333;
+  border-radius: 1em;
+}
+
+.Approved {
+  display: inline-block;
+  padding: 0.4em 1.2em;
+  color: #fff;
+  background: rgb(27, 139, 27);
+  border-radius: 1em;
+}
+
+.Rejected {
+  display: inline-block;
+  padding: 0.4em 1.2em;
+  color: #fff;
+  background: red;
+  border-radius: 1em;
+}

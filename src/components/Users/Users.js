@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axois from "axios";
+import { useHistory, useLocation } from "react-router-dom";
 import Profile from "./Profile/Profile";
 import classes from "./Users.module.css";
 import Cookies from "js-cookie";
+import "./leavestatus.css";
 
 function Users() {
   const [leavesList, setLeavesList] = useState([]);
+
+  const history = useHistory();
+  const location = useLocation();
+
+  const filterBy = location.search;
+
+  console.log(filterBy);
 
   const user = localStorage.getItem("user");
 
@@ -13,10 +22,19 @@ function Users() {
 
   const token = Cookies.get("jwt");
 
+  const queryChangeHandler = (event) => {
+    event.preventDefault();
+    const filterBy = event.target.value;
+    history.push({
+      pathname: "/profile",
+      search: `?status=${filterBy}`,
+    });
+  };
+
   useEffect(() => {
     const getAllLeaves = async () => {
       const response = await axois.get(
-        "https://essportal-backend.herokuapp.com/api/v1/leave/getAllLeaves",
+        `https://essportal-backend.herokuapp.com/api/v1/leave/getAllLeaves${filterBy}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -31,12 +49,24 @@ function Users() {
       setLeavesList(filteredLeaves);
     };
     getAllLeaves();
-  }, [userId, token]);
+  }, [userId, token, filterBy]);
 
   return (
     <div className={classes.container}>
       <Profile />
       <div className={classes.leaveContainer}>
+        <h3 className={classes.title}>Leave Requests</h3>
+        <div className={classes.sortContainer}>
+          <div className={classes.options}>
+            <label htmlFor="filterby">Filter By</label>
+            <select name="filterby" id="filterby" onChange={queryChangeHandler}>
+              <option disabled>All</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
         {user === ("user" || "admin") &&
           leavesList.map((leave) => {
             return (
@@ -52,9 +82,7 @@ function Users() {
                   </p>
                   <p>
                     Status -{" "}
-                    <span className={classes + `.${leave.status}`}>
-                      {leave.status}
-                    </span>
+                    <span className={leave.status}>{leave.status}</span>
                   </p>
                 </div>
                 <div className={classes.leaveInfo}>

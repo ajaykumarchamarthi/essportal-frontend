@@ -21,19 +21,6 @@ function AppliedLeaveList({
     setIsOpen(!isOpen);
   };
 
-  console.log(
-    id,
-    firstName,
-    lastName,
-    category,
-    status,
-    detailReason,
-    numberOfDays,
-    appliedDate,
-    dateFrom,
-    dateTo
-  );
-
   return (
     <div className={classes.leaveContainer}>
       <div className={classes.leaveList} key={id}>
