@@ -16,7 +16,6 @@ function AppliedLeave() {
 
   useEffect(() => {
     const loadLeaves = async () => {
-      console.log("Re-rendered");
       const response = await axios.get(
         "https://essportal-backend.herokuapp.com/api/v1/leave/getAllLeaves",
         {
