@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../../store/auth-context";
 import Cookies from "js-cookie";
 import axios from "axios";
 import classes from "./UsersList.module.css";
 
 function UsersList() {
   const [usersList, setUsersList] = useState([]);
+
+  const submitCtx = useContext(AuthContext);
+
+  const reRender = submitCtx.isUserAdded;
 
   const token = Cookies.get("jwt");
 
@@ -24,7 +29,8 @@ function UsersList() {
       setUsersList(filteredUsers);
     };
     loadUsers().catch((err) => alert(err.message));
-  }, [token]);
+    // eslint-disable-next-line
+  }, [reRender]);
 
   return (
     <div>

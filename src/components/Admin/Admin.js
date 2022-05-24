@@ -19,7 +19,9 @@ function Admin() {
         <button className={classes.btn} onClick={openHandler}>
           Add a Employee
         </button>
-        {isOpen && <AddUsersModal onConfirm={openHandler} />}
+        {isOpen && (
+          <AddUsersModal onConfirm={openHandler} setIsOpen={setIsOpen} />
+        )}
       </div>
       <UsersList />
     </div>

@@ -66,6 +66,8 @@ function AppliedLeaveList({
         {isOpen && (
           <ApproveLeaveModal
             onConfirm={openHandler}
+            setIsOpen={setIsOpen}
+            isOpen={isOpen}
             id={id}
             status={status}
             firstName={firstName}

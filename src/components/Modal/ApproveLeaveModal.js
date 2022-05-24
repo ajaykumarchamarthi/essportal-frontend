@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import classes from "./ApproveLeaveModal.module.css";
-import { useHistory } from "react-router-dom";
 import ReactDom from "react-dom";
 import Cookies from "js-cookie";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
+import AuthContext from "../../store/auth-context";
 import "react-toastify/dist/ReactToastify.css";
 
 const Backdrop = (props) => {
@@ -12,9 +12,8 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
-  const history = useHistory();
-
   const statusInputRef = useRef();
+  const submitCtx = useContext(AuthContext);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -53,7 +52,8 @@ const ModalOverlay = (props) => {
         toast.success(data.message, {
           position: toast.POSITION.TOP_CENTER,
         });
-        history.replace("/manager");
+        props.setIsOpen(!props.isOpen);
+        submitCtx.toggleIsSubmitted();
       })
       .catch((err) => {
         toast.error(err.message, {
@@ -138,6 +138,8 @@ function ApproveLeaveModal(props) {
       {ReactDom.createPortal(
         <ModalOverlay
           onConfirm={props.onConfirm}
+          setIsOpen={props.setIsOpen}
+          isOpen={props.isOpen}
           id={props.id}
           firstName={props.firstName}
           lastName={props.lastName}

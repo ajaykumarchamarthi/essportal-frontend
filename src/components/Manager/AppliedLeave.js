@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import AppliedLeaveList from "./AppliedLeaveList";
 import classes from "./AppliedLeave.module.css";
+import AuthContext from "./../../store/auth-context";
 
 function AppliedLeave() {
   const [leaveList, setLeaveList] = useState([]);
+
+  const submitCtx = useContext(AuthContext);
+
+  const reRender = submitCtx.isLeaveSubmitted;
 
   const token = Cookies.get("jwt");
 
   useEffect(() => {
     const loadLeaves = async () => {
+      console.log("Re-rendered");
       const response = await axios.get(
         "https://essportal-backend.herokuapp.com/api/v1/leave/getAllLeaves",
         {
@@ -27,7 +33,8 @@ function AppliedLeave() {
       setLeaveList(appliedLeaves);
     };
     loadLeaves();
-  }, [token]);
+    // eslint-disable-next-line
+  }, [reRender]);
 
   let filteredAppliedLeaves;
 

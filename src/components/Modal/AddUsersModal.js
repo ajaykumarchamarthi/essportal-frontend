@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDom from "react-dom";
 import Cookies from "js-cookie";
 import classes from "./AddUsersModal.module.css";
@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import AuthContext from "../../store/auth-context";
 
 const schema = yup.object().shape({
   firstName: yup.string().required("First Name is required"),
@@ -29,13 +30,15 @@ const ModalOverlay = (props) => {
     handleSubmit,
   } = useForm({ resolver: yupResolver(schema) });
 
+  const submitCtx = useContext(AuthContext);
+
   const submitHandler = (data, event) => {
     event.preventDefault();
     const firstName = data.firstName;
     const lastName = data.lastName;
     const email = data.email;
     const password = data.password;
-    const confirmPassword = data.confirmPassword;
+    const passwordConfirm = data.passwordConfirm;
 
     const token = Cookies.get("jwt");
 
@@ -52,7 +55,7 @@ const ModalOverlay = (props) => {
         lastName,
         email,
         password,
-        confirmPassword,
+        passwordConfirm,
         userId,
       }),
     })
@@ -68,6 +71,8 @@ const ModalOverlay = (props) => {
       })
       .then((data) => {
         alert(data.status);
+        submitCtx.toggleIsUserAdded();
+        props.setIsOpen(false);
       })
       .catch((err) => {
         alert(err.message);
@@ -143,14 +148,14 @@ const ModalOverlay = (props) => {
           </div>
           <div>
             <TextField
-              name="confirmPassword"
+              name="passwordConfirm"
               id="outlined-basic"
               label="Confirm Password"
               variant="outlined"
               margin="normal"
               style={{ width: 300 }}
               type="password"
-              {...register("confirmPassword", {
+              {...register("passwordConfirm", {
                 required: true,
               })}
             />
@@ -175,7 +180,10 @@ function AddUsersModal(props) {
         document.getElementById("backdrop-root")
       )}
       {ReactDom.createPortal(
-        <ModalOverlay onConfirm={props.onConfirm} />,
+        <ModalOverlay
+          onConfirm={props.onConfirm}
+          setIsOpen={props.setIsOpen}
+        />,
         document.getElementById("overlay-root")
       )}
     </React.Fragment>

@@ -7,6 +7,10 @@ const AuthContext = React.createContext({
   login: (token) => {},
   logout: () => {},
   user: undefined,
+  isLeaveSubmitted: false,
+  isUserAdded: false,
+  toggleIsSubmitted: () => {},
+  toggleIsUserAdded: () => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -14,6 +18,9 @@ export const AuthContextProvider = (props) => {
   const userIsLoggedIn = !!cookies;
 
   const [token, setToken] = useState(cookies);
+
+  const [isLeaveSubmitted, setIsLeaveSubmitted] = useState(false);
+  const [isUserAdded, setIsUserAdded] = useState(false);
 
   const logoutHandler = () => {
     Cookies.remove("jwt");
@@ -29,11 +36,23 @@ export const AuthContextProvider = (props) => {
     setToken(token);
   };
 
+  const toggleSubmitHandler = () => {
+    setIsLeaveSubmitted(!isLeaveSubmitted);
+  };
+
+  const toggleUserAddedHandler = () => {
+    setIsUserAdded(!isUserAdded);
+  };
+
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    isLeaveSubmitted: isLeaveSubmitted,
+    isUserAdded: isUserAdded,
+    toggleIsSubmitted: toggleSubmitHandler,
+    toggleIsUserAdded: toggleUserAddedHandler,
   };
 
   return (
