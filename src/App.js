@@ -8,6 +8,7 @@ import ResetPassword from "./components/Auth/ResetPassword/ResetPassword";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
+import Footer from "./components/Footer/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -73,6 +74,7 @@ function App() {
           <ToastContainer autoClose={3000} />
         </Suspense>
       </div>
+      <Footer />
     </>
   );
 }

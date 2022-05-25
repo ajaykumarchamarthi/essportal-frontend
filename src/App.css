@@ -1,0 +1,3 @@
+.wrapper {
+  min-width: calc(100vh - 120px);
+}
